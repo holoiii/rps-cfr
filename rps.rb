@@ -14,6 +14,7 @@ class RPSTrainer
   end
 
   def run!
+    puts "Running for #{iterations} iterations..."
     puts "Player one strategy start: #{player_one.strategy}"
     puts "Player two strategy start: #{player_two.strategy}"
 
@@ -138,9 +139,9 @@ class Strategy
   def to_s
     # Compute average strategy
     total = rock_sum + paper_sum + scissors_sum
-    avg_rock = rock_sum / total
-    avg_paper = paper_sum / total
-    avg_scissors = scissors_sum / total
+    avg_rock = (rock_sum / total).round(2)
+    avg_paper = (paper_sum / total).round(2)
+    avg_scissors = (scissors_sum / total).round(2)
 
     "Rock: #{avg_rock}, Paper: #{avg_paper}, Scissors: #{avg_scissors}"
   end
