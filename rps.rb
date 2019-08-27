@@ -15,6 +15,7 @@ class RPSTrainer
 
   def run!
     puts "Player one strategy start: #{player_one.strategy}"
+    puts "Player two strategy start: #{player_two.strategy}"
 
     iterations.times do
       # Get player actions
@@ -33,9 +34,17 @@ class RPSTrainer
 
       # Update player one's strategy
       player_one.update_strategy!(rock_regret, paper_regret, scissors_regret)
+
+      # Update player two's strategy
+      regret_calculator = RegretCalculator.new(action_two, action_one)
+      rock_regret = regret_calculator.get_rock_regret
+      paper_regret = regret_calculator.get_paper_regret
+      scissors_regret = regret_calculator.get_scissors_regret
+      player_two.update_strategy!(rock_regret, paper_regret, scissors_regret)
     end
 
     puts "Player one strategy end: #{player_one.strategy}"
+    puts "Player two strategy end: #{player_two.strategy}"
   end
 end
 
